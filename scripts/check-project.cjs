@@ -1,0 +1,31 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+const { execFileSync } = require('node:child_process');
+const root = path.join(__dirname, '..');
+const pub = path.join(root, 'public/interiormente-intro');
+const read = p => fs.readFileSync(path.join(pub, p), 'utf8');
+const component = fs.readFileSync(path.join(root, 'src/components/InteriormenteIntro.astro'), 'utf8');
+const referenced = [...component.matchAll(/assetBase\s*\+\s*["']([^"']+)["']/g)].map(m => m[1]);
+for (const name of referenced) assert.ok(fs.existsSync(path.join(pub, name)), 'Risorsa mancante: ' + name);
+for (const name of fs.readdirSync(pub).filter(n => n.endsWith('.js'))) execFileSync(process.execPath, ['--check', path.join(pub, name)]);
+const scope = { window: {} };
+vm.runInNewContext(read('tunnel-menu.js'), scope);
+const { menuFaces, createPauseGate, items, settings, passageMotion } = scope.window.InteriormenteTunnelMenu;
+const code = read('giorno.js'), start = code.indexOf('const GiornoMotion='), end = code.indexOf('\n})();', start) + 6;
+vm.runInNewContext(code.slice(start, end) + '\nthis.M=GiornoMotion;', scope);
+const M = scope.M, state = M.state(settings.pauseAt);
+assert.equal(items.length, 9); assert.equal(items[7].id, 'posizione');
+assert.equal(state.fold, 1); assert.equal(state.travel, 0);
+for (const [w, h] of [[1525,945],[1920,1080],[1024,768],[390,844]]) {
+  assert.equal(M.fieldBoxes(w).length,45);
+  const faces = menuFaces(M,state,w,h); assert.equal(faces.length,9);
+  assert.ok(faces.every(q=>q.quad.every(p=>p.x>=0&&p.x<=w&&p.y>=0&&p.y<=h)));
+}
+const gate=createPauseGate();assert.equal(gate.progress(.8,100),settings.pauseAt);
+gate.bypass(1);assert.equal(gate.progress(2,200),2);assert.equal(gate.progress(.4,300),settings.pauseAt);
+assert.equal(passageMotion(.35).travel,0);assert.equal(passageMotion(1).travel,1);
+const cfg=JSON.parse(fs.readFileSync(path.join(root,'src/config/interiormente-intro.json'),'utf8'));
+assert.equal(cfg.scorrimento.schermate,2.05);assert.equal(cfg.layoutMobile.elementi.logo.xPercento,29);
+console.log('OK: risorse locali, sintassi JavaScript, 45 volumi/9 ingressi, pausa reversibile, ingresso centrale e parametri approvati.');

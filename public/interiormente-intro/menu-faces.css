@@ -1,0 +1,9 @@
+/* Anteprima: i nove ingressi sono le facce originali, senza pannelli aggiunti. */
+.tunnel-menu .tunnel-menu-cell,.tunnel-menu .tunnel-menu-cell.is-continue,
+.tunnel-menu .tunnel-menu-cell:hover,.tunnel-menu .tunnel-menu-cell:focus-visible{
+ background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;
+}
+.tunnel-menu .tunnel-menu-cell::before,.tunnel-menu .tunnel-menu-cell::after{content:none!important}
+.tunnel-menu .tunnel-menu-name,.tunnel-menu .tunnel-menu-arrow{
+ position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;padding:0!important;margin:-1px!important;
+}

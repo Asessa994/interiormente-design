@@ -1,0 +1,138 @@
+---
+import parameters from '../config/interiormente-intro.json';
+import columnLayout from '../config/interiormente-colonne.json';
+import columnAssets from '../config/interiormente-column-assets.json';
+interface Props { editor?: boolean; previewTools?: boolean; startAt?: 'intro' | 'giorno'; }
+const { editor = false, previewTools = false, startAt = 'intro' } = Astro.props;
+const assetBase = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'interiormente-intro/';
+const localColumns = columnAssets.map(item => ({ ...item, fallback: assetBase + item.fallback }));
+const json = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003c');
+---
+<!-- Versione allineata all'ultima anteprima approvata, 26 novembre 2026. Usare una volta per pagina. -->
+<link rel="stylesheet" href={assetBase + "intro.css"} />
+<link rel="stylesheet" href={assetBase + "tunnel-menu.css"} />
+<link rel="stylesheet" href={assetBase + "menu-faces.css"} />
+<link rel="stylesheet" href={assetBase + "zona-giorno.css"} />
+<div data-interiormente-intro data-editor={String(editor)} data-preview-tools={String(previewTools)} data-start-at={startAt}>
+<svg class="defs" aria-hidden="true"><defs><filter id="light-logo" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%"><feFlood flood-color="#eee8dc" result="ivory"/><feComposite in="ivory" in2="SourceAlpha" operator="in" result="light"/><feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  8 0 -8 0 -.25" result="gold"/><feComposite in="SourceGraphic" in2="gold" operator="in" result="color"/><feMerge><feMergeNode in="light"/><feMergeNode in="color"/></feMerge></filter><clipPath id="o-aperture" clipPathUnits="userSpaceOnUse"><path id="aperture" d="M0.1756757 0.5Q0.1756757 0.6401099 0.2162162 0.7451923Q0.2567568 0.8502747 0.329955 0.9086538Q0.4031532 0.967033 0.5 0.967033Q0.5968468 0.967033 0.670045 0.9086538Q0.7432432 0.8502747 0.7837838 0.7445055Q0.8243243 0.6387363 0.8243243 0.5Q0.8243243 0.3612637 0.7837838 0.2561813Q0.7432432 0.1510989 0.670045 0.092033Q0.5968468 0.032967 0.5 0.032967Q0.4031532 0.032967 0.330518 0.0913462Q0.2578829 0.1497253 0.2167793 0.2548077Q0.1756757 0.3598901 0.1756757 0.5Z"/></clipPath></defs></svg>
+<div class="preview-shell" id="preview-shell">
+<header class="site-header" id="header"><img class="brand" src={assetBase + "images/logo-trasparente.png"} width="2000" height="1000" alt="Interiormente Design Studio"><div class="header-actions"><button class="reset" type="button" data-reset>Ricomincia</button><button class="skip-intro" id="skip-intro" type="button" disabled>Salta intro</button></div></header>
+<main>
+<div class="track" id="track"><section class="stage" id="stage" aria-label="Il colonnato si apre, il gesto accende Interiormente">
+<div class="architecture" id="architecture" aria-hidden="true"><div class="overhead-glow" id="overhead-glow"></div><div class="architecture-fallback" id="architecture-fallback"></div></div>
+<div class="atmosphere" aria-hidden="true"></div><div class="portal-visual" id="portal-visual" aria-hidden="true" inert></div>
+<p class="eyebrow" id="eyebrow">Eredità classica. Estetica moderna.</p>
+<div class="title-row"><h1 class="wordmark" id="wordmark" aria-label="Interiormente"><span class="word-part" id="word-left">INTERI</span><svg id="letter-o" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0900901 0.5Q0.0900901 0.3942308 0.1210586 0.3028846Q0.152027 0.2115385 0.2077703 0.143544Q0.2635135 0.0755495 0.3384009 0.0377747Q0.4132883 -0 0.5 -0Q0.5867117 -0 0.6615991 0.0377747Q0.7364865 0.0755495 0.7922297 0.143544Q0.847973 0.2115385 0.8789414 0.3028846Q0.9099099 0.3942308 0.9099099 0.5Q0.9099099 0.6057692 0.8789414 0.6971154Q0.847973 0.7884615 0.7922297 0.856456Q0.7364865 0.9244505 0.6615991 0.9622253Q0.5867117 1 0.5 1Q0.4132883 1 0.3384009 0.9622253Q0.2635135 0.9244505 0.2077703 0.856456Q0.152027 0.7884615 0.1210586 0.6971154Q0.0900901 0.6057692 0.0900901 0.5ZM0.1756757 0.5Q0.1756757 0.6401099 0.2162162 0.7451923Q0.2567568 0.8502747 0.329955 0.9086538Q0.4031532 0.967033 0.5 0.967033Q0.5968468 0.967033 0.670045 0.9086538Q0.7432432 0.8502747 0.7837838 0.7445055Q0.8243243 0.6387363 0.8243243 0.5Q0.8243243 0.3612637 0.7837838 0.2561813Q0.7432432 0.1510989 0.670045 0.092033Q0.5968468 0.032967 0.5 0.032967Q0.4031532 0.032967 0.330518 0.0913462Q0.2578829 0.1497253 0.2167793 0.2548077Q0.1756757 0.3598901 0.1756757 0.5Z" fill="currentColor"/></svg><span class="word-part" id="word-right">R<span class="gold">MENTE</span></span></h1></div>
+<p class="design" id="design">DESIGN</p>
+<svg class="portal-outline" id="portal-outline" aria-hidden="true"><path id="outline-path" d="M0.0900901 0.5Q0.0900901 0.3942308 0.1210586 0.3028846Q0.152027 0.2115385 0.2077703 0.143544Q0.2635135 0.0755495 0.3384009 0.0377747Q0.4132883 -0 0.5 -0Q0.5867117 -0 0.6615991 0.0377747Q0.7364865 0.0755495 0.7922297 0.143544Q0.847973 0.2115385 0.8789414 0.3028846Q0.9099099 0.3942308 0.9099099 0.5Q0.9099099 0.6057692 0.8789414 0.6971154Q0.847973 0.7884615 0.7922297 0.856456Q0.7364865 0.9244505 0.6615991 0.9622253Q0.5867117 1 0.5 1Q0.4132883 1 0.3384009 0.9622253Q0.2635135 0.9244505 0.2077703 0.856456Q0.152027 0.7884615 0.1210586 0.6971154Q0.0900901 0.6057692 0.0900901 0.5ZM0.1756757 0.5Q0.1756757 0.6401099 0.2162162 0.7451923Q0.2567568 0.8502747 0.329955 0.9086538Q0.4031532 0.967033 0.5 0.967033Q0.5968468 0.967033 0.670045 0.9086538Q0.7432432 0.8502747 0.7837838 0.7445055Q0.8243243 0.6387363 0.8243243 0.5Q0.8243243 0.3612637 0.7837838 0.2561813Q0.7432432 0.1510989 0.670045 0.092033Q0.5968468 0.032967 0.5 0.032967Q0.4031532 0.032967 0.330518 0.0913462Q0.2578829 0.1497253 0.2167793 0.2548077Q0.1756757 0.3598901 0.1756757 0.5Z" fill="#d7b77f"/></svg>
+<canvas class="arms" id="arms" aria-hidden="true"></canvas><canvas class="energy" id="energy" aria-hidden="true"></canvas><img id="atlas" src={assetBase + "images/braccia-atlas.webp"} alt="" hidden>
+<div class="controls" id="controls"><svg class="scroll-cue" id="scroll-cue" viewBox="0 0 24 42" role="img" aria-label="Scorri verso il basso per entrare" focusable="false"><path d="M12 3v31M5 27l7 7 7-7"/></svg><p class="sr-only" id="help">Scorri verso il basso per entrare.</p></div>
+<span class="sr-only" id="chapter-label">Il colonnato</span>
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div><p class="sr-only" id="live" role="status" aria-live="polite"></p>
+</section></div>
+<section class="entry im-giorno" id="progetti" aria-labelledby="giorno-heading">
+ <div class="giorno-stage" data-giorno-stage>
+  <canvas class="giorno-tunnel" data-giorno-canvas aria-hidden="true"></canvas>
+  <img class="giorno-image-source" data-giorno-image data-giorno-image-mobile src={assetBase + "zona-giorno/poster.png"} alt="" hidden>
+  <div data-giorno-gallery hidden><img data-giorno-art src={assetBase + "images/gallery/quadro-01.webp"} width="660" height="660" alt="" hidden><img data-giorno-art data-art-crop="0,20,243,377" src={assetBase + "images/gallery/collage-soggetti.jpg"} width="243" height="377" alt="" hidden><img data-giorno-art src={assetBase + "images/gallery/quadro-03.webp"} width="594" height="840" alt="" hidden><img data-giorno-art src={assetBase + "images/gallery/quadro-04.webp"} width="660" height="624" alt="" hidden><img data-giorno-art data-art-crop="493,439,243,388" src={assetBase + "images/gallery/collage-soggetti.jpg"} width="243" height="388" alt="" hidden><img data-giorno-art src={assetBase + "images/gallery/quadro-07.webp"} width="660" height="660" alt="" hidden><img data-giorno-art data-art-crop="245,880,247,382" src={assetBase + "images/gallery/collage-soggetti.jpg"} width="247" height="382" alt="" hidden><img data-giorno-art data-art-crop="493,880,243,382" src={assetBase + "images/gallery/collage-soggetti.jpg"} width="243" height="382" alt="" hidden></div>
+<div class="giorno-manifesto">
+   <h2 class="giorno-triad" id="giorno-heading" aria-label="Percezione. Stile. Esperienza.">
+    <span class="giorno-keyword" data-giorno-statement aria-hidden="true">Percezione</span>
+    <span class="giorno-keyword" data-giorno-statement aria-hidden="true">Stile</span>
+    <span class="giorno-keyword" data-giorno-statement aria-hidden="true">Esperienza</span>
+   </h2>
+  </div>
+  <div class="giorno-depth-label" aria-hidden="true"><span>ENTRA NELLA</span><strong>ZONA GIORNO</strong></div>
+  <div class="giorno-bottom"><div class="giorno-words" aria-hidden="true"><span data-giorno-word>Percezione</span><span data-giorno-word>Stile</span><span data-giorno-word>Esperienza</span></div><span class="giorno-scroll">Continua a scorrere <span aria-hidden="true">↓</span></span></div>
+</div>
+</section>
+<section class="claude-room" id="giorno-editoriale" data-giorno-editorial data-claude-room aria-labelledby="claude-room-heading">
+ <div class="claude-room-stage" data-room-stage>
+  <h2 class="room-sr-only" id="claude-room-heading">Zona Giorno: la stanza prende forma</h2>
+  <canvas data-room-canvas role="img" aria-label="La zona giorno si compone: pareti, pavimento, travertino, arredi e atmosfera."></canvas>
+  <video data-video-desktop={assetBase + "zona-giorno/video/zona-giorno.mp4"} data-video-mobile={assetBase + "zona-giorno/video/zona-giorno-mobile.mp4"} muted playsinline preload="auto" aria-hidden="true" hidden width="1586" height="992"></video>
+  <img data-room-final src={assetBase + "zona-giorno/ultimo.png"} alt="" hidden>
+  <div class="room-overline"><span>Zona Giorno</span><span>Dal grezzo all’ambiente arredato</span></div>
+  <div class="room-chapter" data-room-chapter><p data-room-chapter-label></p><h3 data-room-chapter-copy></h3></div>
+  <p class="room-cue" data-room-cue>Scorri per dare forma alla stanza</p>
+  <p class="room-loading" data-room-loading hidden>Caricamento della stanza…</p>
+ </div>
+</section>
+
+<section class="zone-transition" id="passaggio-giorno-notte" data-zone-transition data-from="giorno-editoriale" data-to="zona-notte" data-source-label="Zona Giorno" data-source-title="La stanza prende vita." aria-label="Passaggio dalla Zona Giorno alla Zona Notte">
+ <div class="zone-transition-stage" data-zone-stage>
+  <canvas data-zone-canvas aria-hidden="true"></canvas>
+  <div class="zone-destination" data-zone-destination aria-hidden="true" inert></div>
+  <p class="zone-transition-cue" aria-hidden="true">Continua a scorrere <span>↓</span></p>
+ </div>
+</section>
+
+<section class="im-notte" id="zona-notte" aria-labelledby="notte-heading">
+ <div class="notte-intro">
+  <p class="notte-kicker">Zona Notte</p>
+  <h2 id="notte-heading">Qui il mondo<br>può <em>aspettare.</em></h2>
+  <p class="notte-lead">Nella zona notte parto da come vuoi sentirti a fine giornata. Abbasso il ritmo, raccolgo la luce, scelgo le materie. Il carattere della tua casa rimane. Cambia il modo di viverlo.</p>
+ </div>
+ <div class="notte-scelte">
+  <p class="notte-label">Il riposo prende forma nelle scelte.</p>
+  <div class="notte-controls" role="group" aria-label="Esplora le scelte per la zona notte">
+   <button type="button" data-notte-choice="luce" aria-pressed="true" aria-controls="notte-detail">Luce raccolta</button>
+   <button type="button" data-notte-choice="materia" aria-pressed="false" aria-controls="notte-detail">Materia morbida</button>
+   <button type="button" data-notte-choice="spazio" aria-pressed="false" aria-controls="notte-detail">Spazio libero</button>
+  </div>
+  <div class="notte-detail" id="notte-detail" aria-live="polite" aria-atomic="true">
+   <h3 data-notte-title>Disegno una luce che non invade.</h3>
+   <p data-notte-copy>Preferisco punti di luce bassi e precisi: vicino al letto, su una superficie, dentro una nicchia. Così puoi leggere, prepararti o semplicemente fermarti, senza accendere tutta la stanza.</p>
+  </div>
+ </div>
+ <div class="notte-manifesto"><p>Un luogo intimo.<br><em>Con una personalità tutta tua.</em></p><p>Un richiamo classico, un tessuto inatteso, un dettaglio colorato: anche una stanza quieta può dire chi sei. Li doso perché il piacere di guardarla incontri quello di abitarla.</p></div>
+ <div class="notte-end"><span>Interiormente Design · Dal giorno alla notte</span><a href="#giorno-editoriale">Torna alla Zona Giorno</a></div>
+</section>
+
+</main>
+</div>
+<button class="tune-launch" id="tune-launch" type="button" aria-controls="tuner" aria-expanded="false">Regola mobile</button>
+<aside class="tuner" id="tuner" aria-label="Regola gli elementi su mobile">
+ <div class="tune-top"><div><p class="tune-kicker">INTERIORMENTE / SOLO MOBILE</p><h2>Regia mobile</h2></div><button type="button" class="tune-close" id="tune-close" aria-label="Nascondi pannello">Chiudi</button></div>
+ <p class="tune-intro">Scegli un elemento, regola dimensione e posizione, poi copiami i parametri. Il desktop mantiene il suo layout.</p>
+ <div class="tune-transport">
+  <div class="tune-device"><label for="tune-view">Vista</label><select id="tune-view"><option value="mobile">Mobile · 390 × 844</option><option value="auto">Schermo attuale · confronto</option></select></div><p class="tune-viewport" id="tune-viewport"></p>
+  <div class="tune-play-row"><button type="button" class="tune-primary" id="tune-play">Riproduci</button><button type="button" class="tune-secondary" id="tune-restart">Inizio</button></div>
+  <div class="tune-frame-label"><label for="tune-frame">Fotogramma</label><output id="tune-frame-value">0%</output></div><input id="tune-frame" type="range" min="0" max="100" step=".1" value="0" aria-label="Fotogramma dell’animazione">
+  <div class="tune-phase" id="tune-phase" aria-live="off">Pronto</div>
+  <div class="tune-shortcuts"><button type="button" id="tune-curtain">Colonne</button><button type="button" id="tune-pose">Mani</button><button type="button" id="tune-flash">Lampo</button><button type="button" id="tune-zoom">O</button></div>
+ </div>
+ <div class="tune-scroll">
+  <section class="mobile-controls" aria-labelledby="element-heading"><h3 id="element-heading">Elemento da modificare</h3><label class="sr-only" for="tune-element">Elemento</label><select id="tune-element"></select><p class="tune-note" id="tune-element-note">Le sei colonne sono regolabili anche singolarmente.</p><div id="tune-mobile-fields"></div><button type="button" class="tune-secondary tune-full" id="tune-reset-element">Ripristina questo elemento</button><p class="tune-note">Dimensione 100% = dimensione attuale. X positiva sposta a destra; Y positiva verso il basso. Gli spostamenti sono in % della vista mobile.</p></section>
+  <details class="tune-group" id="tune-json-details"><summary>Parametri / importa JSON</summary><div class="tune-group-body"><label class="tune-note" for="tune-json">Copia il testo o incolla un JSON con layoutMobile. L’importazione modifica solo il layout mobile.</label><textarea id="tune-json" rows="13" spellcheck="false" aria-label="Parametri da inviarmi"></textarea><button type="button" class="tune-secondary tune-full" id="tune-apply-json">Applica JSON mobile</button></div></details>
+ </div>
+ <div class="tune-footer"><button type="button" class="tune-primary tune-full" id="tune-copy">Copia parametri</button><div class="tune-footer-links"><button type="button" id="tune-download">Scarica JSON</button><button type="button" id="tune-defaults">Valori approvati</button></div><p id="tune-message" class="tune-message" role="status" aria-live="polite">Le modifiche si salvano in questo browser.</p></div>
+</aside>
+
+
+
+
+<img id="column-texture-0" class="column-texture" src={assetBase + "textures/labbra.jpg"} alt="" hidden><img id="column-texture-1" class="column-texture" src={assetBase + "textures/rossetti.jpg"} alt="" hidden><img id="column-texture-2" class="column-texture" src={assetBase + "textures/joker.jpg"} alt="" hidden><img id="column-texture-3" class="column-texture" src={assetBase + "textures/carta-da-parati.jpg"} alt="" hidden><img id="column-texture-4" class="column-texture" src={assetBase + "textures/tom-jerry.jpg"} alt="" hidden><img id="column-texture-5" class="column-texture" src={assetBase + "textures/serpenti.jpg"} alt="" hidden>
+
+
+
+
+
+
+
+
+
+</div>
+
+<script is:inline id="parametri-scelti" type="application/json" set:html={json(parameters)}></script>
+<script is:inline id="column-data" data-src={assetBase + "columns-mesh.bin"} type="application/octet-stream"></script>
+<script is:inline id="column-layout" type="application/json" set:html={json(columnLayout)}></script>
+<script is:inline id="column-assets" type="application/json" set:html={json(localColumns)}></script>
+<script is:inline defer src={assetBase + "architecture.js"}></script>
+<script is:inline defer src={assetBase + "scene.js"}></script>
+<script is:inline defer src={assetBase + "zona-giorno.js"}></script>
+<script is:inline defer src={assetBase + "tunnel-menu.js"}></script>
+<script is:inline defer src={assetBase + "giorno.js"}></script>
+<script is:inline defer src={assetBase + "notte.js"}></script>
+<script is:inline defer src={assetBase + "zone-transition.js"}></script>
+{previewTools && <script is:inline defer src={assetBase + "preview-start.js"}></script>}

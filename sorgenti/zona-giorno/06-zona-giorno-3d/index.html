@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zona Giorno · Interiormente Design</title>
+<meta name="description" content="Anteprima della sezione Zona Giorno: la stanza prende forma con lo scorrimento.">
+<style>
+@font-face { font-family: Aboreto; src: url('assets/font/aboreto.woff2') format('woff2'); font-display: swap; }
+:root { color-scheme: light; --ink: #37352e; --muted: #6a6256; --gold: #8f6b30; --paper: #e9e3d8; --line: #554b332f; --stageH: 100svh; }
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; overscroll-behavior-y: none; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; color: inherit; }
+:focus-visible { outline: 2px solid #75552c; outline-offset: 4px; }
+
+/* una sola sezione fissata: la lunghezza del binario decide quanto scorrimento serve per l'intera trasformazione */
+.track { position: relative; height: calc(var(--stageH) * var(--screens, 4.5)); }
+.stage { position: sticky; top: 0; height: var(--stageH); overflow: hidden; isolation: isolate; background: var(--paper); }
+.film { position: absolute; inset: 0; }
+.film video { width: 100%; height: 100%; display: block; object-fit: cover; object-position: var(--focus-x, 52%) 50%; background: var(--paper); }
+.veil { position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(180deg, #ede7db8c 0%, #e9e3d800 17%, #e9e3d800 80%, #e9e3d866 100%); }
+
+.header { position: absolute; z-index: 5; inset: 26px 36px auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.brand { display: flex; flex-direction: column; gap: 7px; }
+.brand > span { font: 400 clamp(17px, 1.45vw, 24px)/1 Aboreto, Georgia, serif; letter-spacing: .015em; }
+.brand b { font-weight: 400; color: var(--gold); }
+.brand small { font-size: 10px; letter-spacing: .37em; color: #574f43; }
+.label { font-size: 12px; color: #5f584c; letter-spacing: .02em; }
+
+.chapter { position: absolute; z-index: 3; left: 5.6%; top: 22%; max-width: 30ch; pointer-events: none; opacity: 0; transform: translateY(8px); transition: opacity .45s, transform .45s; }
+.chapter.on { opacity: 1; transform: none; }
+.chapter small { display: block; font-size: 10px; letter-spacing: .22em; color: #75582f; margin-bottom: 9px; }
+.chapter p { margin: 0; font: 400 clamp(18px, 1.6vw, 27px)/1.25 Aboreto, Georgia, serif; letter-spacing: -.02em; }
+
+.cue { position: absolute; z-index: 3; left: 50%; bottom: 120px; transform: translateX(-50%); font-size: 12px; color: #514938; display: flex; gap: 12px; align-items: center; transition: opacity .3s; pointer-events: none; }
+.cue svg { width: 12px; height: 26px; fill: none; stroke: currentColor; animation: nudge 2s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateY(4px); } }
+
+/* controlli dell'anteprima (non fanno parte del filmato) */
+.controls { position: absolute; z-index: 5; left: 36px; right: 36px; bottom: 18px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 12px; }
+.steps { display: flex; gap: 26px; flex-wrap: wrap; }
+.steps button { border: 0; background: none; padding: 7px 0; font-size: 12px; color: #665e50; position: relative; }
+.steps button::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: #82653c; transform: scaleX(0); transform-origin: left; transition: transform .18s; }
+.steps button.on { color: #332d23; } .steps button.on::after { transform: scaleX(1); }
+.play { border: 1px solid var(--line); background: #f4efe6a6; backdrop-filter: blur(10px); border-radius: 3px; padding: 9px 14px; font-size: 12px; display: flex; gap: 8px; align-items: center; }
+.play svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+.play .ps { display: none; } .playing .play .ps { display: block; } .playing .play .pl { display: none; }
+.row { display: flex; gap: 20px; align-items: center; }
+input[type=range] { flex: 1; appearance: none; background: transparent; height: 18px; margin: 0; cursor: ew-resize; --pos: 0%; }
+input[type=range]::-webkit-slider-runnable-track { height: 1px; background: linear-gradient(to right, #86653a var(--pos), #62553d42 var(--pos)); }
+input[type=range]::-moz-range-track { height: 1px; background: #62553d42; }
+input[type=range]::-moz-range-progress { height: 1px; background: #86653a; }
+input[type=range]::-webkit-slider-thumb { appearance: none; width: 9px; height: 9px; border-radius: 50%; background: #826039; margin-top: -4px; box-shadow: 0 0 0 4px #f4eddf77; }
+input[type=range]::-moz-range-thumb { width: 9px; height: 9px; border: 0; border-radius: 50%; background: #826039; }
+output { font-size: 11px; color: #685c48; min-width: 44px; text-align: right; font-variant-numeric: tabular-nums; }
+
+.loading { position: absolute; z-index: 10; inset: 0; background: var(--paper); display: flex; flex-direction: column; gap: 20px; align-items: center; justify-content: center; font-size: 13px; color: #68604f; transition: opacity .45s, visibility .45s; }
+.loading .w { font: 25px Aboreto, Georgia, serif; color: #393429; } .loading .w b { font-weight: 400; color: var(--gold); }
+.loading .bar { width: min(240px, 60vw); height: 1px; background: #62553d33; } .loading .bar i { display: block; height: 100%; width: 0; background: #86653a; }
+.ready .loading { opacity: 0; visibility: hidden; }
+.missing { max-width: 46ch; text-align: center; line-height: 1.6; }
+.missing code { background: #0000000d; padding: 2px 6px; border-radius: 3px; }
+
+.after { min-height: 70svh; display: grid; place-items: center; padding: 64px 24px; text-align: center; color: var(--muted); }
+.after h2 { font: 400 clamp(22px, 2.4vw, 36px)/1.2 Aboreto, Georgia, serif; color: var(--ink); margin: 0 0 12px; }
+
+/* telefono in verticale: nessun ritaglio laterale né deformazione, il fotogramma intero sta in larghezza */
+@media (max-aspect-ratio: 1/1) {
+  .film { inset: auto 0; top: 27%; height: auto; aspect-ratio: 1586 / 992; }
+  .film video { object-fit: contain; }
+  .veil { background: linear-gradient(180deg, #e9e3d800 0%, #e9e3d800 75%, #e9e3d8 96%); }
+  .header { inset: 20px 20px auto; } .label { display: none; }
+  .chapter { top: 12%; left: 20px; right: 20px; max-width: none; }
+  .cue { bottom: 150px; }
+  .controls { left: 20px; right: 20px; } .steps { gap: 14px; } .steps button { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) { .cue svg { animation: none; } }
+</style>
+</head>
+<body>
+<main>
+  <section class="track" id="track" aria-label="Zona Giorno: dal grezzo all'ambiente arredato">
+    <div class="stage" id="stage">
+      <div class="film"><video id="v" muted playsinline preload="auto" aria-hidden="true" poster="assets/video/poster.png"></video></div>
+      <div class="veil"></div>
+      <header class="header">
+        <div class="brand"><span>Interiorment<b>e</b></span><small>DESIGN</small></div>
+        <div class="label">Anteprima · Zona Giorno</div>
+      </header>
+      <div class="chapter" id="chapter" aria-live="polite"><small id="chK"></small><p id="chT"></p></div>
+      <div class="cue" id="cue"><svg viewBox="0 0 12 26"><rect x=".5" y=".5" width="11" height="18" rx="5.5"/><path d="M6 5v4M3 22l3 3 3-3"/></svg>Scorri per dare forma alla stanza</div>
+      <div class="controls" id="controls">
+        <div class="top">
+          <nav class="steps" id="steps" aria-label="Fasi"></nav>
+          <button class="play" id="play" type="button" aria-label="Riproduzione automatica dell'anteprima">
+            <svg class="pl" viewBox="0 0 14 14"><path d="M3 2l9 5-9 5z"/></svg><svg class="ps" viewBox="0 0 14 14"><path d="M4 2v10M10 2v10"/></svg><span id="playTxt">Riproduci</span>
+          </button>
+        </div>
+        <div class="row"><input id="scrub" type="range" min="0" max="1000" value="0" aria-label="Avanzamento della trasformazione"><output id="out">0,0 s</output></div>
+      </div>
+      <div class="loading" id="loading"><div class="w">Interiorment<b>e</b></div><div class="bar"><i id="ldBar"></i></div><div id="ldTxt">Caricamento del filmato · 0%</div></div>
+    </div>
+  </section>
+  <section class="after"><div><h2>La sezione prosegue</h2><p>Qui riprende il resto della pagina: la scena non scorre più.</p></div></section>
+</main>
+<script type="module">
+// Parametri in un unico punto: config/zona-giorno.json (durata, tempi delle fasi, scorrimento)
+const cfg = await fetch('config/zona-giorno.json').then(r => r.json());
+const DUR = cfg.durata, T = cfg.tempi;
+const SCROLL = cfg.scorrimento || { schermate: 4.5, morbidezza: 0.22 };
+const track = document.getElementById('track'), v = document.getElementById('v');
+track.style.setProperty('--screens', SCROLL.schermate);
+
+const chapters = [
+  { k: '01 · Pareti', t: 'Carta da parati avorio, posata telo per telo.', a: T.carta.inizio, step: 'Carta' },
+  { k: '02 · Pavimento', t: 'Lastre di pietra chiara, dal fondo verso di noi.', a: T.pavimento.inizio, step: 'Pavimento' },
+  { k: '03 · Camino', t: 'Travertino su pannelli e basamento.', a: T.camino.inizio, step: 'Travertino' },
+  { k: '04 · Arredi', t: 'Divano, lampada, poltrona e tavolini trovano il loro posto.', a: cfg.arredi[0].t[0], step: 'Arredi' },
+  { k: '05 · Atmosfera', t: 'Il fuoco si accende, la luce si stabilizza.', a: T.fuoco.inizio, step: 'Fuoco' },
+];
+const stepsEl = document.getElementById('steps');
+chapters.forEach((c, i) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = c.step; b.onclick = () => seekTime(c.a + 0.6); stepsEl.appendChild(b); c.btn = b; });
+
+// caricamento completo del filmato (blob) per uno scorrimento senza attese
+const mobile = matchMedia('(max-width: 900px)').matches;
+const src = mobile ? 'assets/video/zona-giorno-mobile.mp4' : 'assets/video/zona-giorno.mp4';
+const ldBar = document.getElementById('ldBar'), ldTxt = document.getElementById('ldTxt');
+const setP = p => { ldBar.style.width = p + '%'; ldTxt.textContent = 'Caricamento del filmato · ' + Math.round(p) + '%'; };
+try {
+  const r = await fetch(src);
+  if (!r.ok) throw new Error(r.status);
+  const total = +r.headers.get('content-length') || 0, rd = r.body.getReader(), chunks = []; let got = 0;
+  for (;;) { const { done, value } = await rd.read(); if (done) break; chunks.push(value); got += value.length; if (total) setP(got / total * 98); }
+  v.src = URL.createObjectURL(new Blob(chunks, { type: 'video/mp4' }));
+} catch (e) {
+  document.getElementById('loading').innerHTML = '<div class="missing">Il filmato <code>' + src + '</code> non è presente.<br>Generalo con <code>npm run video</code>, poi ricarica la pagina.</div>';
+  throw e;
+}
+await new Promise(res => { v.addEventListener('loadeddata', res, { once: true }); v.load(); });
+setP(100);
+// iOS/Safari: un play/pausa iniziale rende disponibili i fotogrammi per il seek
+try { await v.play(); v.pause(); } catch (e) {}
+v.currentTime = 0;
+document.body.classList.add('ready');
+
+// ---- scorrimento -> tempo del filmato (avanti e indietro), con smorzamento
+let target = 0, cur = 0, inflight = false;
+v.addEventListener('seeked', () => { inflight = false; });
+const progress = () => { const r = track.getBoundingClientRect(), tot = track.offsetHeight - innerHeight; return Math.min(1, Math.max(0, -r.top / tot)); };
+function seekTime(t) { const tot = track.offsetHeight - innerHeight; scrollTo({ top: track.offsetTop + tot * Math.min(1, Math.max(0, t / DUR)), behavior: 'instant' }); }
+const scrub = document.getElementById('scrub'), out = document.getElementById('out'), chapter = document.getElementById('chapter'), cue = document.getElementById('cue');
+scrub.addEventListener('input', () => { stop(); seekTime(scrub.value / 1000 * DUR); });
+function onScroll() {
+  const p = progress(); target = p;
+  scrub.value = Math.round(p * 1000); scrub.style.setProperty('--pos', p * 100 + '%');
+  out.textContent = (p * DUR).toFixed(1).replace('.', ',') + ' s';
+  cue.style.opacity = p > 0.02 ? 0 : 1;
+  const t = p * DUR; let ci = -1; chapters.forEach((c, i) => { if (t >= c.a) ci = i; });
+  chapters.forEach((c, i) => c.btn.classList.toggle('on', i === ci));
+  const show = ci >= 0 && t < DUR - 0.4;
+  chapter.classList.toggle('on', show);
+  if (ci >= 0) { document.getElementById('chK').textContent = chapters[ci].k; document.getElementById('chT').textContent = chapters[ci].t; }
+}
+addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
+(function loop() {
+  cur += (target - cur) * SCROLL.morbidezza;
+  if (Math.abs(target - cur) < 1e-4) cur = target;
+  const want = cur * (v.duration || DUR);
+  if (!inflight && v.readyState >= 2 && Math.abs(want - v.currentTime) > 0.008) { inflight = true; v.currentTime = Math.min(want, (v.duration || DUR) - 0.001); }
+  requestAnimationFrame(loop);
+})();
+
+// ---- riproduzione automatica (controllo dell'anteprima): fa scorrere la pagina, così scroll e filmato restano un'unica fonte
+const playBtn = document.getElementById('play'), playTxt = document.getElementById('playTxt');
+let playing = false, last = 0;
+function stop() { playing = false; document.body.classList.remove('playing'); playTxt.textContent = 'Riproduci'; }
+playBtn.onclick = () => {
+  if (playing) return stop();
+  playing = true; document.body.classList.add('playing'); playTxt.textContent = 'Pausa';
+  let t = progress() * DUR; if (t >= DUR - 0.05) { t = 0; seekTime(0); }
+  last = performance.now();
+  const step = now => { if (!playing) return; t = Math.min(DUR, progress() * DUR + (now - last) / 1000); last = now; seekTime(t); if (t >= DUR) return stop(); requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+};
+['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, e => { if (playing && !(e.target === playBtn || playBtn.contains(e.target))) stop(); }, { passive: true }));
+</script>
+</body>
+</html>

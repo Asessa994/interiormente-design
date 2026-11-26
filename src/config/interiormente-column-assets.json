@@ -1,0 +1,32 @@
+[
+  {
+    "id": "labbra",
+    "side": "left",
+    "fallback": "fallback/labbra.webp"
+  },
+  {
+    "id": "rossetti",
+    "side": "left",
+    "fallback": "fallback/rossetti.webp"
+  },
+  {
+    "id": "joker",
+    "side": "left",
+    "fallback": "fallback/joker.webp"
+  },
+  {
+    "id": "carta-da-parati",
+    "side": "right",
+    "fallback": "fallback/carta-da-parati.webp"
+  },
+  {
+    "id": "tom-jerry",
+    "side": "right",
+    "fallback": "fallback/tom-jerry.webp"
+  },
+  {
+    "id": "serpenti",
+    "side": "right",
+    "fallback": "fallback/serpenti.webp"
+  }
+]

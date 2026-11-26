@@ -1,0 +1,105 @@
+{
+  "preview_sha256": "fb44bb1a91b999b550c717a146863fd1037586e137963da0f70302ae981b3ec6",
+  "preview_filename": "anteprima-menu-tunnel.html",
+  "assets": {
+    "fonts/aboreto-latin-400-normal.woff2": {
+      "sha256": "8755c709d7487eb939f907d404d1f752a17587c92d61aa6ebdcaa42387699a34",
+      "bytes": 15324
+    },
+    "images/logo-trasparente.png": {
+      "sha256": "9590e959a763d98bc6e4be15bc5d96af4ad16f1d161d11d7d27d6575d3d9caf9",
+      "bytes": 1314879
+    },
+    "images/braccia-atlas.webp": {
+      "sha256": "1c1edb42cd78ea81ee8c54df2416409fa05c95ad578b42162b57f5ae1630ff84",
+      "bytes": 217662
+    },
+    "zona-giorno/poster.png": {
+      "sha256": "94a19c03b7ddfb788305396404bd2e78e109ab41f2ed292d1d2335f0174098c2",
+      "bytes": 3157255
+    },
+    "images/gallery/quadro-01.webp": {
+      "sha256": "4e1d11b6dc832225f4866becea9bb9a6471c0967dffee3d600ec32e2a2123909",
+      "bytes": 18588
+    },
+    "images/gallery/collage-soggetti.jpg": {
+      "sha256": "4c221e0b1365ac67b362ddac39622804191adb5dea7f7d1b26d63256d9938dce",
+      "bytes": 123407
+    },
+    "images/gallery/quadro-03.webp": {
+      "sha256": "41307163bdc691768a7ae661cb2df484630eac2d71ab6232c47e1073a2c82957",
+      "bytes": 35322
+    },
+    "images/gallery/quadro-04.webp": {
+      "sha256": "7b4301b42b7eab433a9dd51cfd2980498f7eaabf4145421f3b3b3ac7489f69c2",
+      "bytes": 22096
+    },
+    "images/gallery/quadro-07.webp": {
+      "sha256": "0c28bc869afdb57aae450e986621737fdb9c1bf0f62b665678fa042926b93437",
+      "bytes": 45816
+    },
+    "zona-giorno/ultimo.png": {
+      "sha256": "67861922a80b8d8d629e892f3b7e19f2b4b716054f6a6cbbfe106ad294fd7dfa",
+      "bytes": 3423127
+    },
+    "fallback/labbra.webp": {
+      "sha256": "23808dda96a7477e7da0de4e7338a63efbf5306882c2e2fcd0f74078d3f4ad90",
+      "bytes": 77534
+    },
+    "fallback/rossetti.webp": {
+      "sha256": "5fe7643385e6531b2363b801e520e7b071b5468916240461f685565a8792985c",
+      "bytes": 77730
+    },
+    "fallback/joker.webp": {
+      "sha256": "dc10c7aeb382fddc333318b9d5384b3d209328bc69249090a034f96d2ae171ab",
+      "bytes": 88096
+    },
+    "fallback/carta-da-parati.webp": {
+      "sha256": "0b66f26d6352b824b95a0c2f4ad132812562490d80444150b240e9da37eedfcb",
+      "bytes": 90048
+    },
+    "fallback/tom-jerry.webp": {
+      "sha256": "a5ca46bf046580a145ab792937c92e3635a8307ce918395faf92ee4cd02e0fd6",
+      "bytes": 112806
+    },
+    "fallback/serpenti.webp": {
+      "sha256": "192f9868a692b294692d5c10dd3c0dbb2ddcf6046a464d529da02760c4a59b41",
+      "bytes": 79928
+    },
+    "textures/labbra.jpg": {
+      "sha256": "e0283ffc6411bc3460b9ff11fd44efab4f32432a7f5fcb193a7aa5d9688bb290",
+      "bytes": 217431
+    },
+    "textures/rossetti.jpg": {
+      "sha256": "e3b546a67939b0de1c011cb36c34e189ef940dc2853b66ff855aea0b9878662b",
+      "bytes": 238756
+    },
+    "textures/joker.jpg": {
+      "sha256": "b7b3a6fa90f4435a61806139576a0f30627a293d14b066851a2f826bf3039e0c",
+      "bytes": 451960
+    },
+    "textures/carta-da-parati.jpg": {
+      "sha256": "cb303856c6a161f03efe5530a931a8fa36adef9ce81f00d035bea5a590ae278b",
+      "bytes": 609267
+    },
+    "textures/tom-jerry.jpg": {
+      "sha256": "73acfc1a52e8da3945dbae0558a3bad1fc37218d42d0669235c12cda710acbbd",
+      "bytes": 716152
+    },
+    "textures/serpenti.jpg": {
+      "sha256": "d1aa6fde32e5b7fdcea123e0cdcb9ab0f2e86401f3a6821d28a368875dbd5950",
+      "bytes": 462155
+    }
+  },
+  "source_modules": {
+    "architecture.js": "dfa99740aeeefe3f4194bf8a2150087975c7f4ce9429beda1114a87c24a864d2",
+    "scene.js": "afb582824120033d4c392fc520bd01fd7aaab93de0abd073d58f5942f2ed216c",
+    "tunnel-menu.js": "79fff0022db4f4d00f4db9daf9c702cb395ed9a45fe62914a4b47603d7dd14d6",
+    "giorno.js": "080515ab14ead643004c50df22afed8fa8403ed2dc49cf3cf44202189fd80737",
+    "notte.js": "f486274b383a6983ff8f9a89bbe2eed93dadc3d129e6785a8f15051e1961dde1",
+    "zone-transition.js": "f100fd10e57299e655b3764f11eea5ab6829e6b164111a8bd81efb058f8154bf",
+    "zona-giorno.js": "b08da317ccc1328e30ac17852408c9db35f96e624c1ef3cb036855bd78ed96e3",
+    "preview-start.js": "a0425d96b1f4e107678f4ad527d142501e3326f0c9fbd78f70201dab045389e5"
+  },
+  "difference": "I video e le immagini sono file locali anziché base64; la home parte dall’intro, /anteprima dalle tre parole."
+}

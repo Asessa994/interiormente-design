@@ -1,0 +1,172 @@
+{
+  "primitives": [
+    {
+      "material": 0,
+      "attributes": {
+        "position": {
+          "count": 113934,
+          "itemSize": 3,
+          "componentType": 5126,
+          "normalized": false,
+          "offset": 0
+        },
+        "normal": {
+          "count": 113934,
+          "itemSize": 3,
+          "componentType": 5126,
+          "normalized": false,
+          "offset": 455736
+        },
+        "uv": {
+          "count": 75956,
+          "itemSize": 2,
+          "componentType": 5126,
+          "normalized": false,
+          "offset": 911472
+        },
+        "color": {
+          "count": 151912,
+          "itemSize": 4,
+          "componentType": 5121,
+          "normalized": true,
+          "offset": 1215296
+        }
+      },
+      "index": {
+        "count": 166392,
+        "itemSize": 1,
+        "componentType": 5123,
+        "normalized": false,
+        "offset": 1367208
+      }
+    },
+    {
+      "material": 1,
+      "attributes": {
+        "position": {
+          "count": 38148,
+          "itemSize": 3,
+          "componentType": 5126,
+          "normalized": false,
+          "offset": 1699992
+        },
+        "normal": {
+          "count": 38148,
+          "itemSize": 3,
+          "componentType": 5126,
+          "normalized": false,
+          "offset": 1852584
+        },
+        "uv": {
+          "count": 25432,
+          "itemSize": 2,
+          "componentType": 5126,
+          "normalized": false,
+          "offset": 2005176
+        },
+        "color": {
+          "count": 50864,
+          "itemSize": 4,
+          "componentType": 5121,
+          "normalized": true,
+          "offset": 2106904
+        }
+      },
+      "index": {
+        "count": 74304,
+        "itemSize": 1,
+        "componentType": 5123,
+        "normalized": false,
+        "offset": 2157768
+      }
+    }
+  ],
+  "materials": [
+    {
+      "name": "Marmo bianco",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.8,
+          0.78,
+          0.74,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.55
+      }
+    },
+    {
+      "name": "Carta da parati",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.62,
+        "baseColorTexture": {
+          "index": 0
+        }
+      }
+    }
+  ],
+  "geometry_sha256": "22a28b2e087acc161611970cf2969096b49d0a8c3a109a5389231325de246855",
+  "models": [
+    {
+      "id": "labbra",
+      "file": "colonna-labbra.glb",
+      "side": "left",
+      "texture": "textures/labbra.jpg",
+      "fallback": "fallback/labbra.webp",
+      "texture_sha256": "e0283ffc6411bc3460b9ff11fd44efab4f32432a7f5fcb193a7aa5d9688bb290",
+      "glb_sha256": "e128bf1a55d00bd67c4fb773c06196d4bb0c2ec1a0f8aec1a9635dc91951c1ea"
+    },
+    {
+      "id": "rossetti",
+      "file": "colonna-rossetti.glb",
+      "side": "left",
+      "texture": "textures/rossetti.jpg",
+      "fallback": "fallback/rossetti.webp",
+      "texture_sha256": "e3b546a67939b0de1c011cb36c34e189ef940dc2853b66ff855aea0b9878662b",
+      "glb_sha256": "ffdfa619fb0b3866649cc68f1b70487893cbb8dbb89718d1ccffb5e38b3eef83"
+    },
+    {
+      "id": "joker",
+      "file": "colonna-joker.glb",
+      "side": "left",
+      "texture": "textures/joker.jpg",
+      "fallback": "fallback/joker.webp",
+      "texture_sha256": "b7b3a6fa90f4435a61806139576a0f30627a293d14b066851a2f826bf3039e0c",
+      "glb_sha256": "244b705f5d383c169aa9843dd316c9be912773e82aff8738c27181d14aea1e17"
+    },
+    {
+      "id": "carta-da-parati",
+      "file": "colonna-carta-da-parati.glb",
+      "side": "right",
+      "texture": "textures/carta-da-parati.jpg",
+      "fallback": "fallback/carta-da-parati.webp",
+      "texture_sha256": "cb303856c6a161f03efe5530a931a8fa36adef9ce81f00d035bea5a590ae278b",
+      "glb_sha256": "bd5cab12235211e2d0825f51dfd2c80af75dd81654fd43ebe0ec3c9d52cd3c9b"
+    },
+    {
+      "id": "tom-jerry",
+      "file": "colonna-tom-jerry.glb",
+      "side": "right",
+      "texture": "textures/tom-jerry.jpg",
+      "fallback": "fallback/tom-jerry.webp",
+      "texture_sha256": "73acfc1a52e8da3945dbae0558a3bad1fc37218d42d0669235c12cda710acbbd",
+      "glb_sha256": "0e88ef4c3a86700ab566d31c883294297e74954d04cefef673297c2b8238988e"
+    },
+    {
+      "id": "serpenti",
+      "file": "colonna-serpenti.glb",
+      "side": "right",
+      "texture": "textures/serpenti.jpg",
+      "fallback": "fallback/serpenti.webp",
+      "texture_sha256": "d1aa6fde32e5b7fdcea123e0cdcb9ab0f2e86401f3a6821d28a368875dbd5950",
+      "glb_sha256": "21827e4326f12401c35b2da2fe409e00dad69654492eac6f84c4872aece9c3e2"
+    }
+  ]
+}

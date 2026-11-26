@@ -1,0 +1,204 @@
+{
+  "versione": 1,
+  "mani": {
+    "sinistraInizioGradi": 0,
+    "destraInizioGradi": 11,
+    "sinistraFinaleGradi": -12,
+    "destraFinaleGradi": -1,
+    "scalaDesktop": 1,
+    "scalaMobile": 0.97,
+    "altezzaPercento": 0,
+    "distanzaDitaPx": 7
+  },
+  "tempi": {
+    "durataSecondi": 3,
+    "ingressoInizio": 25,
+    "ingressoFine": 35,
+    "gestoInizio": 29,
+    "gestoFine": 63,
+    "scintilla": 78,
+    "zoomInizio": 80,
+    "pausaScintillaMs": 450
+  },
+  "scintilla": {
+    "intensita": 2.5,
+    "alonePx": 41,
+    "durataMs": 1850,
+    "scariche": 2,
+    "luceResidua": 0.43
+  },
+  "portale": {
+    "curvaZoom": 1.05,
+    "centraturaPercento": 50
+  },
+  "scorrimento": {
+    "schermate": 2.05,
+    "morbidezzaMs": 400
+  },
+  "layoutMobile": {
+    "versione": 1,
+    "elementi": {
+      "colonnato": {
+        "xPercento": 0,
+        "yPercento": -9,
+        "scala": 0.99
+      },
+      "colonneSinistra": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "colonneDestra": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "colonnaLabbra": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "colonnaRossetti": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "colonnaJoker": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "colonnaCartaDaParati": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "colonnaTomJerry": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "colonnaSerpenti": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "logo": {
+        "xPercento": 29,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "saltaIntro": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1.07
+      },
+      "ricomincia": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "titolo": {
+        "xPercento": 0,
+        "yPercento": 1.25,
+        "scala": 1.19
+      },
+      "letteraO": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "motto": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "design": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1.55
+      },
+      "bagliore": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "mani": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "manoSinistra": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "manoDestra": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "scintilla": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "freccia": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "barraAvanzamento": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "ingresso": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "titoloIngresso": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "descrizioneIngresso": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "etichettaIngresso": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "rivediIntro": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "notaIngresso": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "arcoIngresso": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      },
+      "scrittaSfondo": {
+        "xPercento": 0,
+        "yPercento": 0,
+        "scala": 1
+      }
+    }
+  },
+  "riferimento": {
+    "vista": "mobile",
+    "larghezza": 390,
+    "altezza": 844,
+    "fotogrammaPercento": 0
+  }
+}

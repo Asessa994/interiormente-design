@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zona Giorno · renderer</title>
+<style>
+  :root { --bg: #14110e; --ink: #efe7dc; --mute: #a59886; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 13px/1.4 system-ui, sans-serif; }
+  .wrap { position: fixed; inset: 0; display: grid; place-items: center; }
+  canvas { width: min(100vw, 160vh); aspect-ratio: 1586 / 992; height: auto; display: block; }
+  .ui { position: fixed; left: 16px; right: 16px; bottom: 14px; display: flex; gap: 12px; align-items: center;
+        background: rgba(20,17,14,.72); padding: 10px 14px; border-radius: 10px; backdrop-filter: blur(8px); }
+  .ui input[type=range] { flex: 1; accent-color: #c9a77a; }
+  .ui button { background: #c9a77a; color: #1b160f; border: 0; border-radius: 6px; padding: 6px 12px; font-weight: 600; cursor: pointer; }
+  .ui span { color: var(--mute); min-width: 64px; text-align: right; font-variant-numeric: tabular-nums; }
+</style>
+<script type="importmap">{ "imports": { "three": "./node_modules/three/build/three.module.js" } }</script>
+</head>
+<body>
+<div class="wrap"><canvas id="c" width="1586" height="992"></canvas></div>
+<div class="ui"><button id="play">Riproduci</button><input id="t" type="range" min="0" max="12" step="0.001" value="0"><span id="tv">0.00 s</span></div>
+<script type="module">
+import { createScene } from './src/scene.js';
+const [config, layout] = await Promise.all([fetch('config/zona-giorno.json').then(r => r.json()), fetch('assets/layout.json').then(r => r.json())]);
+const sc = await createScene({ canvas: document.getElementById('c'), config, layout });
+window.__scene = sc;
+const slider = document.getElementById('t'), tv = document.getElementById('tv'), play = document.getElementById('play');
+slider.max = sc.duration;
+let t = +(new URLSearchParams(location.search).get('t') || 0), playing = false, last = 0;
+const draw = () => { sc.renderAt(t); slider.value = t; tv.textContent = t.toFixed(2) + ' s'; };
+slider.oninput = () => { t = +slider.value; playing = false; play.textContent = 'Riproduci'; draw(); };
+play.onclick = () => { playing = !playing; play.textContent = playing ? 'Pausa' : 'Riproduci'; if (t >= sc.duration) t = 0; last = performance.now(); requestAnimationFrame(loop); };
+function loop(now) { if (!playing) return; t = Math.min(sc.duration, t + (now - last) / 1000); last = now; draw(); if (t >= sc.duration) { playing = false; play.textContent = 'Riproduci'; return; } requestAnimationFrame(loop); }
+// usato dallo script di registrazione
+window.renderAt = (time) => { t = time; sc.renderAt(time); return true; };
+draw();
+window.__ready = true;
+</script>
+</body>
+</html>
